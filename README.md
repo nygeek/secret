@@ -7,6 +7,23 @@ The objective is to NOT store the secret in GitHub but to make it easy to manage
 
 The secret is stored in the ./static/.secret.json file.  This is a place in the Google Cloud Storage space that is intended for relatively static files.
 
+The secret is READ from the _stash_path/_**.secret.json**
+
+If you want to create a .secret.json file you must capture the output of the program and put it in that file.  I have a make target that does this:
+
+```
+.PHONY: newsecret
+newsecret:
+	${PYTHON} secret_stash.py -n > ./static/.secret.json
+```
+
+You can check if the secret file is copacetic with this make target:
+```
+.PHONY: checksecret
+checksecret:
+	${PYTHON} secret_stash.py
+```
+
 ## Manual
 
 ### usage: secret_stash.py [-h] [-d] [-p PATH] [-n]
