@@ -14,6 +14,8 @@ PYTHON := python3
 # PYLINT := ${PYTHON} -m pylint
 PYLINT := pylint
 
+HOME := ${HOME}
+LIBRARY := ${HOME}/projects/p/python/library/
 HERE := $(shell pwd)
 
 .PHONY: help
@@ -29,11 +31,24 @@ PYTHON_SOURCE = \
 
 SOURCE = \
 	${PYTHON_SOURCE} \
-	Makefile
+	Makefile \
+	README.md
 
 FILES = \
 	${SOURCE} \
 	.gitattributes
+
+.PHONY: install
+install:
+	cp secret_stash.py ${LIBRARY}
+
+.PHONY: newsecret
+newsecret:
+	${PYTHON} secret_stash.py -n > ./static/.secret.json
+
+.PHONY: checksecret
+checksecret:
+	${PYTHON} secret_stash.py
 
 pylint:
 	- ${PYLINT} secret_stash.py
