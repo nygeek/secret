@@ -59,11 +59,11 @@ class SecretStash:
         if os.path.isfile(secret_filepath):
             # it exists ... try reading it
             with open(secret_filepath, encoding='utf-8') as fh:
-                stashed_secret = json.load(fh)
-            if stashed_secret is None:
+                stashed_stash = json.load(fh)
+            if stashed_stash is None:
                 print("read_secret(): Fail")
             else:
-                self.secret = stashed_secret
+                self.secret = stashed_stash['secret']
             # should handle the case when the file exists but either
             # the open() or the json.load() fails.
             return self.secret
@@ -101,7 +101,7 @@ def main():
     else:
         stash.get_secret()
         if stash.secret is not None:
-            print(f"'{stash.get_secret()['secret']}'")
+            print(f"'{stash.get_secret()}'")
 
 
 if __name__ == "__main__":
