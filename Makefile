@@ -36,7 +36,8 @@ SOURCE = \
 
 FILES = \
 	${SOURCE} \
-	.gitattributes
+	.gitattributes \
+	.gitignore
 
 .PHONY: install
 install:
