@@ -1,0 +1,13 @@
+RCS/
+.venv/
+__pycache__/
+stash/
+instance/
+.pytest_cache/
+htmlcov/
+dist/
+build/
+.htmlcov/
+*.egg-info/
+*.pyc
+.coverage
